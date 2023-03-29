@@ -1,16 +1,30 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+import keyword
+from flask import(
+    Flask, 
+    request, 
+    render_template, 
+    redirect, 
+    url_for, 
+    jsonify
+)
 from pymongo import MongoClient
 import requests
 from datetime import datetime
 from bson import ObjectId
 
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DB_NAME =  os.environ.get("DB_NAME")
+
+client = MongoClient(MONGODB_URI)
+db = client[DB_NAME]
+
 app = Flask(__name__)
-
-password = 'colosal'
-cxn_str = f'mongodb+srv://test:{password}@cluster0.pttqnas.mongodb.net/?retryWrites=true&w=majority'
-client = MongoClient(cxn_str)
-
-db = client.dbtitan
 
 @app.route('/')
 def main():

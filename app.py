@@ -45,7 +45,7 @@ def main():
 
 @app.route('/detail/<keyword>')
 def detail(keyword):
-    api_key = 'f5c443cf-fa94-4c41-8d8b-cfacf80574f8'
+    api_key = '2f05f2cc-be6d-489d-a379-a5e848e8139c'
     url = f'https://www.dictionaryapi.com/api/v3/references/collegiate/json/{keyword}?key={api_key}'
     response = requests.get(url)
     definitions = response.json()
